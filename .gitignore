@@ -1,0 +1,35 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Experiment outputs (generated at run time).
+# The directories themselves are kept via .gitkeep placeholders.
+**/error_curve/*
+!**/error_curve/.gitkeep
+**/un-u_inf_curve/*
+!**/un-u_inf_curve/.gitkeep
+**/result/*
+!**/result/.gitkeep
+**/models/*
+!**/models/.gitkeep
+**/history_preds/*
+!**/history_preds/.gitkeep
+**/history_error/*
+!**/history_error/.gitkeep
+
+# Run counter and stray generated files
+run_count.txt
+*.csv
+*.png
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
