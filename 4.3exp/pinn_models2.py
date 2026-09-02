@@ -43,10 +43,7 @@ def laplace(u,x):
 
 def mixed_laplace(u, x):
     """
-    Mixed Laplace operator for B^p x S^q (in local coordinates): the first
-    half of the coordinates is Euclidean, the second half is spherical:
-    ∆u = Δ_{Euclid}u + 4^(-1)(1+||x||^2)^2 * Σ(∂²u/∂x_j²) - 2^(-1)(n'-2)(1+||x||^2) * Σ(x_j * ∂u/∂x_j),
-    where the last two terms act on the spherical part only.
+    ∆u = Σ(∂²u/∂y_i²) + 4^(-1)(1+||x||^2)^2 * Σ(∂²u/∂x_j²) - 2^(-1)(n'-2)(1+||x||^2) * Σ(x_j * ∂u/∂x_j),
     """
     n = x.shape[1]  # spatial dimension
     n_ = round(n/2)

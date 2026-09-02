@@ -32,8 +32,8 @@ EXPERIMENTS = [
     ('4.1exp', 'HdDDM1.py'),
     ('4.2exp', 'HdDDM1.py'),
     ('4.3exp', 'HdDDM2.py'),
-    ('4.4exp_serial', 'HdDDM3.py'),
-    ('4.4exp_parallel', 'HdDDM4.py'),
+    ('4.4exp', 'HdDDM3.py'),
+    ('4.5exp', 'HdDDM4.py'),
 ]
 
 # Shrinking patches applied to a *copy* of each main program.

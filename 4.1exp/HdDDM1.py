@@ -1,6 +1,6 @@
 """
 Numerical experiment of Section 4.1 of the paper: the Schwarz
-Alternating Method with PINNs on the 5-dimensional sphere S^5.
+Alternating Method (Algorithm 3.3) with PINNs on the 5-dimensional sphere S^5.
 
 The sphere is covered by two overlapping subdomains (stereographic charts).
 Two PINNs are trained alternately over 100 outer steps; at each outer step
@@ -113,14 +113,14 @@ def record_test_results(number, n, b, R, hidden_dim, layers, epochs, points, md,
 
 def f_function1(x, n, b):
     """
-    Source term f = (n + b)(1-||x||^2)/(1+||x||^2)
+    Source term f = (n + b)(1-||x||^2)/(1+||x||^2) on D1
     """
     norm_x_squared = torch.sum(x**2, dim=1, keepdim=True)
     return (n + b) * (1 - norm_x_squared) / (1 + norm_x_squared)
 
 def f_function2(x, n, b):
     """
-    Source term f = (n + b)(-1+||x||^2)/(1+||x||^2)
+    Source term f = (n + b)(-1+||x||^2)/(1+||x||^2) on D2
     """
     norm_x_squared = torch.sum(x**2, dim=1, keepdim=True)
     return (n + b) * (-1 + norm_x_squared) / (1 + norm_x_squared)
@@ -147,14 +147,14 @@ def boundary_condition_training(model_b):
 
 def exact_solution1(x):
     """
-    Exact solution u = (1-||x||^2)/(1+||x||^2)
+    Exact solution u = (1-||x||^2)/(1+||x||^2) on D1
     """
     norm_x_squared = torch.sum(x**2, dim=1, keepdim=True)
     return (1-norm_x_squared) / (1+norm_x_squared)
 
 def exact_solution2(x):
     """
-    Exact solution u = (-1+||x||^2)/(1+||x||^2)
+    Exact solution u = (-1+||x||^2)/(1+||x||^2) on D2
     """
     norm_x_squared = torch.sum(x**2, dim=1, keepdim=True)
     return (-1+norm_x_squared) / (1+norm_x_squared)

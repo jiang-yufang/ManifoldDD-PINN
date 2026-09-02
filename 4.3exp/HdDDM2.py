@@ -1,6 +1,6 @@
 """
 Numerical experiment of Section 4.3 of the paper: the Schwarz
-Alternating Method with PINNs on the 6-dimensional product manifold
+Alternating Method (Algorithm 3.3) with PINNs on the 6-dimensional product manifold
 B^3 x S^3 (which has the boundary S^2 x S^3).
 
 The manifold is covered by two overlapping subdomains (charts with a mixed
@@ -115,7 +115,7 @@ def record_test_results(number, n, b, R, hidden_dim, layers, epochs, points, md,
 
 def f_function1(x, n, b):
     """
-    Source term f = (b+pi^2)sin(pi*y_p)+(b+q)(1-||x||^2)/(1+||x||^2)
+    Source term f = (b+pi^2)sin(pi*y_p)+(b+q)(1-||x||^2)/(1+||x||^2) on D1
     """
     n_=round(n/2)
     norm_x_squared2 = torch.sum(x[:,n_:n]**2, dim=1, keepdim=True)
@@ -123,7 +123,7 @@ def f_function1(x, n, b):
 
 def f_function2(x, n, b):
     """
-    Source term f = (b+pi^2)sin(pi*y_p)+(b+q)(-1+||x||^2)/(1+||x||^2)
+    Source term f = (b+pi^2)sin(pi*y_p)+(b+q)(-1+||x||^2)/(1+||x||^2) on D2
     """
     n_=round(n/2)
     norm_x_squared2 = torch.sum(x[:,n_:n]**2, dim=1, keepdim=True)
@@ -154,7 +154,7 @@ def boundary_condition_training(model_b):
 
 def exact_solution1(x):
     """
-    Exact solution u = sin(pi*y_p)+(1-||x||^2)/(1+||x||^2)
+    Exact solution u = sin(pi*y_p)+(1-||x||^2)/(1+||x||^2) on D1
     """
     n = x.shape[1]
     n_ = round(n/2)
@@ -163,7 +163,7 @@ def exact_solution1(x):
 
 def exact_solution2(x):
     """
-    Exact solution u = sin(pi*y_p)+(-1+||x||^2)/(1+||x||^2)
+    Exact solution u = sin(pi*y_p)+(-1+||x||^2)/(1+||x||^2) on D2
     """
     n = x.shape[1]
     n_ = round(n/2)

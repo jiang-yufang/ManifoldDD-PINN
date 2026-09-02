@@ -146,7 +146,7 @@ def domain_transport(x,i,j):
 def f_function_i(i):
     def f_function(x, n, b, a):
         """
-        Source term f = (4n + 4 + b)*u - 4Σa_i
+        Source term f = (4n + 4 + b)*u - 4Σa_i on Di
         """
         norm_x_squared = torch.sum(x**2, dim=1, keepdim=True)
         w_norm2 = get_w_norm2(x)
@@ -199,7 +199,7 @@ def boundary_condition_training_i(i, s, model_list):
 def exact_solution_i(i):
     def exact_solution(x, a):
         """
-        Exact solution u = (ai + Σaj*|wj|^2) / (1 + ||w||^2)
+        Exact solution u = (ai + Σaj*|wj|^2) / (1 + ||w||^2) on Di
         """
         w_norm2 = get_w_norm2(x)
         i_mask = torch.full((a.shape[0],), True, dtype=torch.bool, device=a.device)

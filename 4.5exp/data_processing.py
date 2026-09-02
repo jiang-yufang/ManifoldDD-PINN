@@ -39,7 +39,7 @@ def mean_and_std(index):
         writer = csv.writer(file)
         if not file_exists:
             writer.writerow(['step']+[0,5,10,15,20,100])
-        writer.writerow(der_max_mean[0:21:5]+[der_max_mean[-1]])
-        writer.writerow(der_max_bias[0:21:5]+[der_max_bias[-1]])
+        writer.writerow([f'{index[0]}-{index[-1]} mean']+der_max_mean[0:21:5]+[der_max_mean[-1]])
+        writer.writerow([f'{index[0]}-{index[-1]} std dev']+der_max_bias[0:21:5]+[der_max_bias[-1]])
 
     print("Data written to output.csv")

@@ -43,7 +43,6 @@ def laplace(u,x):
 
 def spherical_laplace(u, x):
     """
-    Spherical Laplace operator (in stereographic coordinates):
     ∆u = 4^(-1)(1+||x||^2)^2 * Σ(∂²u/∂x_j²) - 2^(-1)(n-2)(1+||x||^2) * Σ(x_j * ∂u/∂x_j)
     """
     n = x.shape[1]  # spatial dimension

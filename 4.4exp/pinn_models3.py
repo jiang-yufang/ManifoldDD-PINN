@@ -21,11 +21,8 @@ def get_w_norm2(x):
 
 def cp_laplace(u, x):
     """
-    Laplace operator on the CP^k subdomains after the chart mapping.
-
-    The first n and the last n coordinates of x are respectively the real and
-    imaginary parts of the complex variables:
     ∆u = (1 + ||x||^2) * ( Σ ∂²u/∂x_i²  +  second-order cross terms )
+    For the full expression, see Section 4.4 of the paper.
     """
     n = x.shape[1]  # spatial dimension
     n_ = round(n/2)
