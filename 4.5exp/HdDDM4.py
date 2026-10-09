@@ -35,7 +35,7 @@ HERE = Path(__file__).resolve().parent
 
 def get_run_count():
     """Return the number of times the program has been run (from run_count.txt)."""
-    count_file = "run_count.txt"
+    count_file = HERE / "run_count.txt"
 
     # Create the counter file and initialize it to 0 if it does not exist yet.
     if not os.path.exists(count_file):
@@ -53,7 +53,7 @@ def get_run_count():
 
 def update_run_count():
     """Increment the run counter by one and return the new value."""
-    count_file = "run_count.txt"
+    count_file = HERE / "run_count.txt"
     current_count = get_run_count()
     new_count = current_count + 1
 
@@ -308,7 +308,7 @@ for k in range(5):
             with torch.no_grad():
                 # Record the solution values at the fixed test points (one row per outer step).
                 test_di[i][step+1]=task_i[i].model(test_points_di[i]).flatten()
-            print(f"Step {step}, D{str(i)} exact error: {di_er[i][step]:.6f}, time: {task_i[i].training_time:.2f}")
+            print(f"Step {step}, D{str(i)} exact error: {di_er[i][-1]:.6f}, time: {task_i[i].training_time:.2f}")
 
         # Decay the learning rate at every outer step.
         lr_ = lr_ * lr_steps
@@ -364,7 +364,7 @@ for k in range(5):
     # ||u^n - u^inf|| curves: relative L2 error of u^n w.r.t. the converged
     # solution u^inf := u^100 (step 100).
     for i in range(n+1):
-        test_di[i] = torch.sqrt(torch.sum((test_di[i] - test_di[i][steps-1])**2,dim=1))/torch.sqrt(torch.sum((test_di[i][steps-1])**2))
+        test_di[i] = torch.sqrt(torch.sum((test_di[i] - test_di[i][steps])**2,dim=1))/torch.sqrt(torch.sum((test_di[i][steps])**2))
         test_di[i] = test_di[i].tolist()
 
     plt.figure(figsize=(10, 6))
@@ -396,7 +396,7 @@ for k in range(5):
 
     record_test_results(run_count, n, b, a, R, s, hidden_dim, layers, epochs, points, md, device, dtype, act_function,
                             interior_points_rate, interior_weight, opt, lr, lrs, gamma, steps, lr_steps,
-                            total_time, [er[step] for er in di_er], 'hdddm4_test_results')
+                            total_time, [er[-1] for er in di_er], 'hdddm4_test_results')
 
 # Mean curves over the 5 trials (element-wise average).
 for i in range(n+1):

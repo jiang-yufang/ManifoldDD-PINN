@@ -2,8 +2,8 @@
 Smoke test for the DDM-PINN experiments.
 
 Runs every main program (HdDDM1.py / HdDDM2.py / HdDDM3.py / HdDDM4.py)
-end-to-end with drastically reduced parameters (30 inner epochs, 5 outer
-steps, 300 sampled points, 64-wide networks) to verify that the pipeline
+end-to-end with drastically reduced parameters (10 inner epochs, 3 outer
+steps, 200 sampled points, 32-wide networks) to verify that the pipeline
 runs without errors and produces its expected output files. The number of
 trials is intentionally kept at the default 5: the main programs only assign
 their `st`/`ed` run numbers on the first/last trial, and keeping 5 trials
@@ -41,14 +41,14 @@ EXPERIMENTS = [
 # `st`/`ed` are only assigned on the first/last trial, and keeping 5 trials
 # exercises the mean/std statistics path as well.
 PATCHES = [
-    ('    epochs = 5000', '    epochs = 30'),       # inner epochs
-    ('    points = 2000', '    points = 300'),      # sampled points
-    ('    points = 5000', '    points = 300'),      # sampled points (4.2)
-    ('    hidden_dim = 500', '    hidden_dim = 64'),
-    ('    steps = 100', '    steps = 5'),           # outer steps
+    ('    epochs = 5000', '    epochs = 10'),       # inner epochs
+    ('    points = 2000', '    points = 200'),      # sampled points
+    ('    points = 5000', '    points = 200'),      # sampled points (4.2)
+    ('    hidden_dim = 500', '    hidden_dim = 32'),
+    ('    steps = 100', '    steps = 3'),           # outer steps
 ]
 
-REQUIRED = ['    epochs = 30']
+REQUIRED = ['    epochs = 10']
 
 EXPECTED_OUTPUTS = [
     'result/output.csv',

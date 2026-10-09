@@ -215,7 +215,7 @@ Each run of a main script produces the following files inside its experiment fol
 ## Notes
 
 - **Compute cost.** Each trial runs 100 outer steps × 5000 inner epochs × (2–4) subdomain networks, repeated 5 times. A single full experiment can take many hours on a single GPU. The results reported in the paper were produced on a GPU cluster.
-- **`run_count.txt`.** The main scripts keep a run counter in `run_count.txt` in the current working directory — always run them from inside the experiment folder (`cd 4.1exp` etc.) so that the counter and the output files stay in the right place.
+- **`run_count.txt`.** The run counter is stored in `run_count.txt` inside each experiment folder (independent of the current working directory); running from inside the folder is still recommended so that the commands match this documentation.
 - **Network architectures.** §4.1 and §4.2 use the plain fully-connected PINN, while §4.3, §4.4 and §4.5 use the residual network variant (`Res_PINN`, a ResNet-style network with shortcut connections). Both architectures are selectable via the `md` option (`'PINN'` / `'Res'`).
 
 ## Citation
